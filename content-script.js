@@ -1,35 +1,49 @@
-console.log("content-script.js");
 if (new URLSearchParams(window.location.search).get("id") === "47") {
-  console.log("content-script.js");
+  const title = document.title;
+
   setTimeout(() => {
     chrome.runtime.sendMessage({ query: "getAutoRemoveStatus" }, (response) => {
       if (response.AutoRemove) {
-        if (document.querySelector("#nav")) {
-          document.querySelector("#nav").remove();
-        }
+        removeAll();
+      }
+    });
+  }, 0);
 
-        if (document.querySelector("#footer")) {
-          document.querySelector("#footer").remove();
-        }
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.AutoRemove === false) {
+      const customStyle = document.getElementById("custom-style");
+      if (customStyle) {
+        customStyle.remove();
+      }
 
-        document.title = "New Title";
+      document.title = title;
+    } else {
+      removeAll();
+    }
+  });
 
-        const css = document.createElement("style");
-        css.textContent = `
+  function removeAll() {
+    document.title = "New Title";
+    const css = document.createElement("style");
+
+    css.id = "custom-style"; // 给<style>元素设置一个唯一的id
+    css.textContent = `
           #game_frame {
             width: 395px !important;
           }
-          
+
           #webGL-container {
             display: flex;
             justify-content: center;
           }
+
+          #nav, #footer {
+            display: none;
+          }
         `;
 
-        if (document.head) {
-          document.head.appendChild(css);
-        }
-      }
-    });
-  }, 0);
+    if (document.head) {
+      document.head.appendChild(css);
+    }
+  }
 }

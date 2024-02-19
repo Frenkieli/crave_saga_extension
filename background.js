@@ -18,6 +18,9 @@ chrome.action.onClicked.addListener((tab) => {
           16: iconPath,
         },
       });
+
+      // 向当前标签页的内容脚本发送消息
+      chrome.tabs.sendMessage(tab.id, { AutoRemove: isAutoRemoveEnabled });
     });
   });
 });
