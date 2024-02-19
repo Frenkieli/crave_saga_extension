@@ -1,5 +1,6 @@
 if (new URLSearchParams(window.location.search).get("id") === "47") {
   const title = document.title;
+  const iconUrl = document.querySelector('link[rel="shortcut icon"]').href;
 
   setTimeout(() => {
     chrome.runtime.sendMessage({ query: "getAutoRemoveStatus" }, (response) => {
@@ -10,23 +11,37 @@ if (new URLSearchParams(window.location.search).get("id") === "47") {
   }, 0);
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.AutoRemove === false) {
-      const customStyle = document.getElementById("custom-style");
-      if (customStyle) {
-        customStyle.remove();
-      }
-
-      document.title = title;
-    } else {
+    if (message.AutoRemove) {
       removeAll();
+    } else {
+      addAll();
     }
   });
 
+  function addAll() {
+    const customStyle = document.getElementById("custom-style");
+    if (customStyle) {
+      customStyle.remove();
+    }
+
+    document.title = title;
+
+    if (document.querySelector('link[rel="shortcut icon"]')) {
+      document.querySelector('link[rel="shortcut icon"]').href = iconUrl;
+    }
+  }
+
   function removeAll() {
-    document.title = "New Title";
+    document.title = chrome.i18n.getMessage("newTitle");
+
+    if (document.querySelector('link[rel="shortcut icon"]')) {
+      document.querySelector('link[rel="shortcut icon"]').href =
+        chrome.runtime.getURL("icons/logo-enabled.png");
+    }
+
     const css = document.createElement("style");
 
-    css.id = "custom-style"; // 给<style>元素设置一个唯一的id
+    css.id = "custom-style";
     css.textContent = `
           #game_frame {
             width: 395px !important;
@@ -37,8 +52,8 @@ if (new URLSearchParams(window.location.search).get("id") === "47") {
             justify-content: center;
           }
 
-          #nav, #footer {
-            display: none;
+          #nav, #footer, .footer_mobileNav.mobile {
+            display: none !important;
           }
         `;
 

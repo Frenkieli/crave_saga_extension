@@ -6,5 +6,9 @@
   "extDescription": {
     "message": "用來去除神絆的導師對應的尷尬訊息",
     "description": "套件描述"
+  },
+  "newTitle": {
+    "message": "神秘海域 - 无限火力",
+    "description": "新的標題"
   }
 }

@@ -9,11 +9,14 @@
   },
   "permissions": ["storage"],
   "icons": {
-    "16": "icons/icon-16.png",
-    "32": "icons/icon-32.png",
-    "48": "icons/icon-48.png",
-    "128": "icons/icon-128.png"
+    "128": "icons/logo-disabled.png"
   },
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/logo-enabled.png"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "default_locale": "en",
   "content_scripts": [
     {

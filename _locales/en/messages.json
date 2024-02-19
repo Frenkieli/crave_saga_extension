@@ -6,5 +6,9 @@
   "extDescription": {
     "message": "Used to remove awkward messages associated with Crave Saga",
     "description": "Extension Description"
+  },
+  "newTitle": {
+    "message": "Mystic Seas - Infinite Firepower",
+    "description": "New Title"
   }
 }
