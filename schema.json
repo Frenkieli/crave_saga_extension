@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "AutoRemove": {
+      "title": "start remove all.",
+      "description": "start remove all.",
+      "type": "boolean"
+    }
+  }
+}

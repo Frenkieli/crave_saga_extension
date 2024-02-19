@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "神絆的導師去尷尬",
+    "description": "套件名稱"
+  },
+  "extDescription": {
+    "message": "用來去除神絆的導師對應的尷尬訊息",
+    "description": "套件描述"
+  }
+}

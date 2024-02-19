@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Crave Saga Remover",
+    "description": "Extension Name"
+  },
+  "extDescription": {
+    "message": "Used to remove awkward messages associated with Crave Saga",
+    "description": "Extension Description"
+  }
+}
