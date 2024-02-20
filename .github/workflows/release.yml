@@ -40,3 +40,12 @@ jobs:
           asset_path: ./release.zip
           asset_name: release.zip
           asset_content_type: application/zip
+
+      - name: Upload & release Chrome extension
+        uses: mnao305/chrome-extension-upload@v5.0.0
+        with:
+          file-path: ./release.zip
+          extension-id: decpnblgkebmgfadljfngondjdiaaafp # 请替换为您的Chrome扩展ID
+          client-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          refresh-token: ${{ secrets.REFRESH_TOKEN }}
