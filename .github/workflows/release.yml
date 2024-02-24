@@ -49,18 +49,27 @@ jobs:
           client-id: ${{ secrets.CLIENT_ID }}
           client-secret: ${{ secrets.CLIENT_SECRET }}
           refresh-token: ${{ secrets.REFRESH_TOKEN }}
+          publish: false
 
   create-tag-and-release:
     needs: upload-chrome-extension
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Extract version from manifest.json
+        run: |
+          version=$(jq -r .version src/manifest.json)
+          echo "version=$version" >> $GITHUB_ENV
+
       - name: Create Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ needs.build-zip.outputs.version }}
-          release_name: Release ${{ needs.build-zip.outputs.version }}
+          tag_name: ${{ env.version }}
+          release_name: Release ${{ env.version }}
           draft: false
           prerelease: false
