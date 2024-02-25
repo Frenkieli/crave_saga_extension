@@ -36,7 +36,7 @@ if (new URLSearchParams(window.location.search).get("id") === "47") {
 
     if (document.querySelector('link[rel="shortcut icon"]')) {
       document.querySelector('link[rel="shortcut icon"]').href =
-        chrome.runtime.getURL("icons/logo-enabled.png");
+        chrome.runtime.getURL("icons/logo-enabled.jpg");
     }
 
     const css = document.createElement("style");

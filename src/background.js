@@ -12,7 +12,7 @@ chrome.action.onClicked.addListener((tab) => {
     chrome.storage.local.set({ AutoRemove: isAutoRemoveEnabled }, () => {
       // 根據 AutoRemove 的狀態更新圖標
       const iconPath = isAutoRemoveEnabled
-        ? "icons/logo-enabled.png"
+        ? "icons/logo-enabled.jpg"
         : "icons/logo-disabled.png";
       chrome.action.setIcon({
         path: {
@@ -40,7 +40,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 function updateIcon() {
   chrome.storage.local.get("AutoRemove", (data) => {
     const iconPath = data.AutoRemove
-      ? "icons/logo-enabled.png"
+      ? "icons/logo-enabled.jpg"
       : "icons/logo-disabled.png";
     chrome.action.setIcon({
       path: {
