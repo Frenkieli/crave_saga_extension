@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_extName__",
   "description": "__MSG_extDescription__",
-  "version": "1.4",
+  "version": "1.5",
   "action": {},
   "background": {
     "service_worker": "background.js"
@@ -20,7 +20,10 @@
   "default_locale": "en",
   "content_scripts": [
     {
-      "matches": ["https://game.ero-labs.website/*/webGL.html*"],
+      "matches": [
+        "https://game.ero-labs.website/*/webGL.html*",
+        "https://game.ero-labs.shop/*/webGL.html*"
+      ],
       "js": ["content-script.js"]
     }
   ],
